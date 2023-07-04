@@ -1,4 +1,8 @@
 const {respond} = require("../middlewares/respond");
+
+/*
+Single object consisting of routing functions to handle unexpected errors (500)
+ */
 const users = {
     async register(req, res) {
         try {
