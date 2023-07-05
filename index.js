@@ -2,7 +2,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const routes = require('express').Router();
 const userApis = require("./routes/users");
-const newsApis = require("./routes/news")
+const newsApis = require("./routes/news");
+const preferencesApis = require("./routes/preferences")
 
 const express = require("express");
 const app = express();
@@ -16,6 +17,7 @@ const PORT = 3000;
 
 app.use("/", userApis)
 app.use("/", newsApis)
+app.use("/", preferencesApis)
 app.listen(PORT, (error) =>{
         if(!error)
             console.log("Server is Successfully Running and App is listening on port " + PORT);

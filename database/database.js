@@ -1,11 +1,17 @@
 const fs = require("fs");
 const path = require("path");
 
-class Data{
-    static getData(){
-        let readPath = path.join(__dirname,'data.json');
-        let jsonString = fs.readFileSync(readPath,"utf-8")
-        return JSON.parse(jsonString)
+
+let filePath = path.join(__dirname, 'data.json');
+
+const Data = {
+    getUsers() {
+        const data = fs.readFileSync(filePath);
+        return JSON.parse(data);
+    },
+    writeUsers(user) {
+        const data = JSON.stringify(user);
+        return fs.writeFileSync(filePath, data);
     }
 }
 

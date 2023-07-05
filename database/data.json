@@ -1,3 +1,17 @@
-{
-  "users": []
-}
+[
+  {
+    "id": "rY7wP",
+    "username": "Thomas",
+    "password": "$2b$08$EBUPoJM4HJNoJM1btl9m5uYbkgMupd.27Q4CyVeJdeWGzR9BFRuDa",
+    "preferences": {
+      "sources": [
+        "google-news-in"
+      ],
+      "categories": [
+        "health",
+        "technology",
+        "bitcoin"
+      ]
+    }
+  }
+]
