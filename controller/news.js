@@ -8,14 +8,18 @@ const http = require("http");
 
 const news = async (req, res) => {
     let sourceString = encodeURIComponentArray(req.user.preferences.categories);
-    console.log("sourceString :: ", sourceString);
     let baseUrl = baseUrls.everything + sourceString + "&apiKey=" + Keys.newsApiKey;
     const headers = {
         'Content-Type': 'application/json',
     }
     let response = await httpRequest(req, baseUrl, method.GET, headers, null, null);
-    console.log("response :: ", response.data)
-    respond(res, "OK", 200);
+    let sources = req.user.preferences.sources
+    let results = models.articlesFromDb(sources, response.data.articles);
+    if (results.length === 0){
+        respond(res, "No articles found", 400)
+    }else{
+        respond(res, results, 200);
+    }
 }
 
 const sources = async (req, res) => {
