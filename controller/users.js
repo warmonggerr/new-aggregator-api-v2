@@ -17,19 +17,18 @@ Single object consisting of routing functions to handle unexpected errors (500)
 const users = {
     async register(req, res) {
         try {
-            console.log("reqBody :: ", req.body);
             let users = db.getUsers();
-            console.log("users :: ", users);
             let body = req.body;
+            console.log("req uri :: ", req.originalUrl)
             const id = nanoid(5);
             const passHash = bcrypt.hashSync(body.password, 8);//todo add req body validation
-            const existingUser = users.find((user) => user.username === body.username);
+            const existingUser = users.find((user) => user.emailId === body.emailId);
             if (existingUser) {
                 respond(res, messages.userExists, 400);
             } else {
                 const newUser = {
                     id: id,
-                    username: body.username,
+                    emailId: body.emailId,
                     password: passHash,
                     preferences: body.preferences
                 };
