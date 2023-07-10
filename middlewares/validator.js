@@ -60,7 +60,23 @@ const userLogin = (req, res, next) => {
     }
 }
 
+const updatePreferences = (req, res, next) => {
+    const validator = Joi.object({
+        sources: Joi.array().items(Joi.string()).required(),
+        categories: Joi.array().items(Joi.string()).required(),
+    });
+
+    const {error, values} = validator.validate((req.body));
+    if (error) {
+        respond(res, error.message, 400);
+    } else {
+        next();
+    }
+
+}
+
 module.exports.validators = {
+    updatePreferences,
     userRegistration,
     userLogin
 }
